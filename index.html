@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Comparador de Precios Inteligente</title>
+</head>
+<body>
+    <header>
+        <h1>Comparador de Precios</h1>
+        <p>Compara varios productos y descubre cuál te conviene más</p>
+    </header>
+    
+    <main class="aplicacion">
+        <div id="error-container" class="error-mensaje"></div>
+        
+        <!-- Contenedor para productos dinámicos -->
+        <div id="productos-container"></div>
+        
+        <!-- Botón para agregar nuevos productos -->
+        <div class="controles-adicionales">
+            <button id="btn-agregar-producto" type="button">+ Agregar otro producto</button>
+        </div>
+        
+        <section class="resultados" aria-live="polite">
+            <button id="btn-calcular" onclick="calcularMejorProducto()">Calcular Mejor Opción</button>
+            
+            <div class="resultado-container">
+                <h2>Te conviene más:</h2>
+                <p id="mejorProducto" class="resultado-destacado">#Producto</p>
+                <div id="razones" class="explicacion"></div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Comparador de precios &copy; <span id="current-year"></span> | Calcula el costo por unidad</p>
+    </footer>
+    
+    <script src="/index.js"></script>
+    <script src="/render.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

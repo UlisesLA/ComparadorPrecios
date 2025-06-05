@@ -1,0 +1,412 @@
+/* ============= VARIABLES GLOBALES ============= */
+:root {
+    --color-amarillo: #F1DF2B;     /* Color de fondo principal */
+    --color-azul: #007bff;         /* Color primario para botones */
+    --color-verde: #16C60C;        /* Color para resultados positivos */
+    --color-rojo: #f71949;         /* Color para resultados negativos/errores */
+    --color-blanco: #FFFFFF;       /* Color para fondos de elementos */
+    --color-gris: #f5f5f5;         /* Color para fondos secundarios */
+    --sombra: 0 2px 10px rgba(0,0,0,0.1); /* Sombra estándar */
+    --radio-borde: 8px;            /* Radio de bordes estándar */
+    --transicion-rapida: 0.3s ease; /* Transición estándar */
+}
+
+/* ============= RESET Y ESTILOS GLOBALES ============= */
+/* Normalización de estilos para consistencia entre navegadores */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-amarillo);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============= ESTRUCTURA PRINCIPAL ============= */
+/* Encabezado con título y descripción */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Contenedor principal de la aplicación */
+.aplicacion {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra);
+    padding: 25px;
+    width: 100%;
+    max-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+#productos-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* ============= SECCIONES DE PRODUCTOS ============= */
+/* Estilos para cada sección de producto */
+.producto {
+    background-color: var(--color-gris);
+    border-radius: var(--radio-borde);
+    padding: 20px;
+    transition: transform var(--transicion-rapida);
+    margin: 1%;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.producto h2 {
+    margin: 0 !important;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #444;
+}
+
+/* Contenedores para campos de formulario */
+.campo-formulario {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Grupos para cantidad y unidad de medida */
+.grupo-cantidad {
+    display: flex;
+    gap: 10px;
+}
+
+.grupo-cantidad input {
+    flex: 2;
+}
+
+.grupo-cantidad select {
+    flex: 1;
+}
+
+/* Estilos generales para inputs y selects */
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color var(--transicion-rapida);
+}
+
+/* Estados de enfoque para mejor accesibilidad */
+input:focus, select:focus {
+    border-color: var(--color-azul);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+/* Campos de precio con símbolo $ integrado */
+.campo-precio {
+    position: relative;
+}
+
+.campo-precio input {
+    padding-left: 30px; /* Espacio para el símbolo $ */
+}
+
+/* Símbolo $ posicionado correctamente */
+.campo-precio::before {
+    content: "$";
+    position: absolute;
+    left: 13px;
+    top: 52.5%; /* Centrado verticalmente */
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #555;
+    z-index: 2;
+}
+
+/* Eliminar flechas en inputs numéricos */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Textos de ayuda contextual */
+.ayuda {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* ============= ESTILOS PARA SELECTORES DE UNIDAD ============= */
+/* Grupos de opciones organizados por categoría */
+optgroup {
+    font-weight: bold;
+    font-style: normal;
+    color: #333;
+    background-color: #f0f0f0;
+}
+
+optgroup option {
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+/* Opciones deshabilitadas (unidades incompatibles) */
+select option:disabled {
+    color: #999;
+    background-color: #f9f9f9;
+}
+
+/* Opción seleccionada */
+select option:checked {
+    background-color: #e6f7ff;
+    font-weight: bold;
+}
+
+/* ============= SECCIÓN DE RESULTADOS Y ERRORES ============= */
+/* Contenedor principal de resultados */
+.resultados {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Botón principal de cálculo */
+#btn-calcular {
+    background-color: var(--color-azul);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transicion-rapida);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+#btn-calcular:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Contenedor de resultados - oculto inicialmente */
+.resultado-container {
+    display: none;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--color-gris);
+    border-radius: var(--radio-borde);
+    animation: aparecer 0.5s ease forwards;
+}
+
+/* Clase para mostrar resultados */
+.resultado-container.mostrar {
+    display: block;
+}
+
+/* Animación de aparición de resultados */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Texto destacado con el producto recomendado */
+.resultado-destacado {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 15px 0;
+    color: var(--color-verde);
+}
+
+/* Explicación detallada de los resultados */
+.explicacion {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============= ESTILOS ESPECÍFICOS ============= */
+/* Colores para valores positivos */
+.verde {
+    color: var(--color-verde);
+    font-weight: 700;
+}
+
+/* Colores para valores negativos */
+.rojo {
+    color: var(--color-rojo);
+    font-weight: 700;
+}
+
+/* Contenedor de mensajes de error */
+.error-mensaje {
+    display: none;
+    background-color: var(--color-rojo);
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    margin: 0 auto 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    animation: aparecer 0.3s ease;
+}
+
+/* ============= PIE DE PÁGINA ============= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* ============= DISEÑO RESPONSIVE ============= */
+@media (max-width: 768px) {
+    .aplicacion {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .resultados {
+        grid-column: 1;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    /* Ajuste para símbolo $ en dispositivos móviles */
+    .campo-precio::before {
+        top: 58%; /* Mejor alineación vertical */
+    }
+
+    #productos-container{  
+        flex-direction: column;  
+    }
+}
+
+
+/* Añadir al final del archivo style.css */
+
+/* Controles adicionales */
+.controles-adicionales {
+    text-align: center;
+    margin: 20px 0;
+    grid-column: span 2;
+}
+
+#btn-agregar-producto {
+    background-color: var(--color-verde);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#btn-agregar-producto:hover {
+    background-color: var(--color-verde);
+    transform: scale(1.05);
+}
+
+/* Encabezado de producto */
+.encabezado-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 15px;
+}
+
+/* Botón de eliminar */
+.btn-eliminar {
+    background: var(--color-rojo);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    margin: 0 !important;
+}
+
+.btn-eliminar:hover {
+    background: var(--color-rojo);
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+    .controles-adicionales {
+        grid-column: 1;
+    }
+    
+    .encabezado-producto {
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    
+    .btn-eliminar {
+        margin-top: 10px;
+    }
+}
